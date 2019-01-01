@@ -2,3 +2,6 @@ spring:
   devtools:
     livereload:
       enabled: true
+
+git:
+  token: abc
