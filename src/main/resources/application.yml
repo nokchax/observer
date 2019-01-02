@@ -4,4 +4,4 @@ spring:
       enabled: true
 
 git:
-  token: abc
+  token: personal access token from git(https://github.com/settings/tokens)

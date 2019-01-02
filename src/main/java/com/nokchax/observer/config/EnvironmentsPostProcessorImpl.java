@@ -16,7 +16,7 @@ import java.util.List;
  * this class run before spring boot start.
  * logging is not work
  *
- * environment.getPropertySources() contains properties lists
+ * environment.getPropertySources() contains propertySource lists
  * if there are same name of properties, spring use first value of them
  * if you want overwrite application.yml (default properties) add propertySource in front of lists not end of them
  */
@@ -34,6 +34,7 @@ public class EnvironmentsPostProcessorImpl implements EnvironmentPostProcessor {
         });
     }
 
+    //todo if path not exist pass source and log it
     private PropertySource<?> loadYaml(Resource path) {
         if(!path.exists())
             throw new IllegalArgumentException("Resource " + path + " does not exist");
