@@ -9,9 +9,8 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 
-@Setter
-@Service
 @Slf4j
+@Service
 public class GitServiceImpl implements GitService {
     @Value("${git.token}")
     private String token;
