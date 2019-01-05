@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
+import java.time.LocalDate;
 
 @Slf4j
 @Service
@@ -33,13 +34,18 @@ public class GitServiceImpl implements GitService {
 
     @Override
     public GitSearchApiResponse searchCommentsOfToday(String gitId) {
-        System.out.println(getApiUrl(gitId, "2019-01-01"));
+        return searchComments(gitId, LocalDate.now());
+    }
+
+    @Override
+    public GitSearchApiResponse searchComments(String gitId, LocalDate date) {
+        System.out.println(getApiUrl(gitId, date.toString()));
         ResponseEntity<GitSearchApiResponse> response = restTemplate.exchange(
-                        getApiUrl(gitId, "2019-01-01"),
-                        HttpMethod.GET,
-                        httpEntity,
-                        GitSearchApiResponse.class
-                );
+                getApiUrl(gitId, date.toString()),
+                HttpMethod.GET,
+                httpEntity,
+                GitSearchApiResponse.class
+        );
 
         return response.getBody();
     }
