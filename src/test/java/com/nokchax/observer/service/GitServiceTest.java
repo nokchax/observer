@@ -17,8 +17,8 @@ public class GitServiceTest {
 
     @Test
     public void test() {
+        //mock response를 이용해야 하나?
         GitSearchApiResponse apiResponse = gitService.searchCommentsOfToday("nokchax");
-        assertThat(apiResponse.getCommitCount()).isEqualTo(3);
         assertThat(apiResponse.hasCommitted()).isEqualTo(true);
     }
 }
