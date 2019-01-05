@@ -1,4 +1,4 @@
-package com.nokchax.observer;
+package com.nokchax.observer.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
@@ -10,7 +10,7 @@ import javax.validation.constraints.Min;
 @NoArgsConstructor
 public class GitSearchApiResponse {
     @Min(0)
-    @JsonProperty("totalCount")
+    @JsonProperty("total_count")
     private int commitCount;
 
     public boolean hasCommitted() {

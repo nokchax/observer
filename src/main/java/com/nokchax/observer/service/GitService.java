@@ -1,5 +1,7 @@
 package com.nokchax.observer.service;
 
+import com.nokchax.observer.domain.GitSearchApiResponse;
+
 public interface GitService {
-    //check commit using graphQL api
+    GitSearchApiResponse searchCommentsOfToday(String gitId);
 }
