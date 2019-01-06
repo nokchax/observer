@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.PostConstruct;
 import java.util.Map;
 
 @Slf4j
@@ -31,10 +30,5 @@ public class IncomingController {
         log.info("{}", body);
 
         return body;
-    }
-
-    @PostConstruct
-    public void check() {
-        log.info("gitService : {}\n slackService : {}", gitService, slackService);
     }
 }
