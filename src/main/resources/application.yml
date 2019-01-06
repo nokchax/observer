@@ -8,4 +8,4 @@ git:
   api:
     search:
       commentUrl: https://api.github.com/search/commits
-      commentQuery: ?q=committer:%s+committer-date:>=%s+sort:committer-date-desc
+      commentQuery: ?q=committer:%s+committer-date:%s..%s+sort:committer-date-desc
