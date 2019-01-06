@@ -39,7 +39,6 @@ public class GitServiceImpl implements GitService {
 
     @Override
     public GitSearchApiResponse searchComments(String gitId, LocalDate date) {
-        System.out.println(getApiUrl(gitId, date.toString()));
         ResponseEntity<GitSearchApiResponse> response = restTemplate.exchange(
                 getApiUrl(gitId, date.toString()),
                 HttpMethod.GET,
@@ -55,7 +54,7 @@ public class GitServiceImpl implements GitService {
     }
 
     private String getQuery(String gitId, String date) {
-        return String.format(searchCommentApiQuery, gitId, date);
+        return String.format(searchCommentApiQuery, gitId, date, date);
     }
 
     @PostConstruct

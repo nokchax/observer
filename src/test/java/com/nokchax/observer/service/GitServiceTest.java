@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
@@ -19,6 +21,20 @@ public class GitServiceTest {
     public void test() {
         //mock response를 이용해야 하나?
         GitSearchApiResponse apiResponse = gitService.searchCommentsOfToday("nokchax");
+        assertThat(apiResponse.hasCommitted()).isEqualTo(true);
+    }
+
+    @Test
+    public void searchCommentsTestOfCommittedDate() {
+        GitSearchApiResponse apiResponse = gitService.searchComments("nokchax", LocalDate.of(2019, 1,1 ));
+        assertThat(apiResponse.getCommitCount()).isEqualTo(1);
+        assertThat(apiResponse.hasCommitted()).isEqualTo(true);
+    }
+
+    @Test
+    public void searchCommentsTestOfNonCommittedDate() {
+        GitSearchApiResponse apiResponse = gitService.searchComments("nokchax", LocalDate.of(2018, 3,1 ));
+        assertThat(apiResponse.getCommitCount()).isEqualTo(1);
         assertThat(apiResponse.hasCommitted()).isEqualTo(true);
     }
 }
