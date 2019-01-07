@@ -37,6 +37,7 @@ public class GitServiceImpl implements GitService {
         return searchComments(gitId, LocalDate.now());
     }
 
+    //todo exception handling
     @Override
     public GitSearchApiResponse searchComments(String gitId, LocalDate date) {
         ResponseEntity<GitSearchApiResponse> response = restTemplate.exchange(

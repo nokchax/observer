@@ -17,6 +17,7 @@ public class SlackServiceImpl implements SlackService {
         this.restTemplate = restTemplate;
     }
 
+    //todo exception handling
     @Override
     public boolean sendMsg(String msg) {
         if(StringUtils.isEmpty(msg))
