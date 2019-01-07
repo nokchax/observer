@@ -18,6 +18,7 @@ public class SlackServiceImpl implements SlackService {
     }
 
     //todo exception handling
+    //how about msg validation check in PayLoad() constructor?
     @Override
     public boolean sendMsg(String msg) {
         if(StringUtils.isEmpty(msg))
