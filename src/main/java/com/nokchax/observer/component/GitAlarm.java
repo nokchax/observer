@@ -20,10 +20,12 @@ public class GitAlarm {
         this.slackService = slackService;
     }
 
+    //todo scheduling
     public void checkCommit(String userId) {
         if(hasCommittedToday())
             return;
 
+        //send msg using message loader?
         if(gitService.searchCommentsOfToday(userId).hasCommitted())
             sendMsg("Do it!");
     }
@@ -37,6 +39,7 @@ public class GitAlarm {
         return this.hasCommittedToday;
     }
 
+    //todo scheduling when 00:00 then init commit flag false
     public void init() {
 
     }
