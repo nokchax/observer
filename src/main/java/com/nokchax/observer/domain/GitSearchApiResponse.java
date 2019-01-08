@@ -13,6 +13,10 @@ public class GitSearchApiResponse {
     @JsonProperty("total_count")
     private int commitCount;
 
+    public GitSearchApiResponse(int commitCount) {
+        this.commitCount = commitCount;
+    }
+
     public boolean hasCommitted() {
         return 0 < commitCount;
     }
