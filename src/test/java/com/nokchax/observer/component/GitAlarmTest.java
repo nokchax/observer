@@ -17,13 +17,16 @@ import static org.mockito.Mockito.when;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GitAlarmTest {
-    @Autowired
     private GitAlarm gitAlarm;
     @Mock
     private GitService gitService;
     @Mock
     private SlackService slackService;
 
+    @Before
+    public void init() {
+        gitAlarm = new GitAlarm(gitService, slackService);
+    }
     //mock service를 생성해서 주입해줘야하나..?
     @Test
     public void pressWhenUserNotCommittedTest() {
@@ -32,7 +35,7 @@ public class GitAlarmTest {
         when(slackService.sendMsg("Do it!")).thenReturn(true);
 
         assertThat(gitAlarm.hasCommittedToday()).isEqualTo(false);
-        gitAlarm.checkCommit();
+        gitAlarm.checkCommit("nokchax");
         assertThat(gitAlarm.hasCommittedToday()).isEqualTo(true);
     }
 }

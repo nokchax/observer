@@ -20,11 +20,23 @@ public class GitAlarm {
         this.slackService = slackService;
     }
 
+    public void checkCommit(String userId) {
+        if(hasCommittedToday())
+            return;
+
+        if(gitService.searchCommentsOfToday(userId).hasCommitted())
+            sendMsg("Do it!");
+    }
+
+    private void sendMsg(String msg) {
+        if(slackService.sendMsg(msg))
+            this.hasCommittedToday = true;
+    }
+
     public boolean hasCommittedToday() {
         return this.hasCommittedToday;
     }
 
-    @PostConstruct
     public void init() {
 
     }
