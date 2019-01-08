@@ -18,6 +18,8 @@ import static org.mockito.Mockito.when;
 @SpringBootTest
 public class GitAlarmTest {
     private GitAlarm gitAlarm;
+    private GitSearchApiResponse apiResponseOfCommittedUser = new GitSearchApiResponse(1);
+    private GitSearchApiResponse apiResponseOfNonCommittedUser = new GitSearchApiResponse(0);
     @Mock
     private GitService gitService;
     @Mock
@@ -26,16 +28,23 @@ public class GitAlarmTest {
     @Before
     public void init() {
         gitAlarm = new GitAlarm(gitService, slackService);
+        when(slackService.sendMsg("Do it!")).thenReturn(true);
     }
-    //mock service를 생성해서 주입해줘야하나..?
+
     @Test
     public void pressWhenUserNotCommittedTest() {
-        GitSearchApiResponse apiResponse = new GitSearchApiResponse(1);
-        when(gitService.searchCommentsOfToday("nokchax")).thenReturn(apiResponse);
-        when(slackService.sendMsg("Do it!")).thenReturn(true);
+        when(gitService.searchCommentsOfToday("nokchax")).thenReturn(apiResponseOfCommittedUser);
 
         assertThat(gitAlarm.hasCommittedToday()).isEqualTo(false);
         gitAlarm.checkCommit("nokchax");
         assertThat(gitAlarm.hasCommittedToday()).isEqualTo(true);
+    }
+
+    @Test
+    public void skipWhenUserCommittedTest() {
+        when(gitService.searchCommentsOfToday("nokchax")).thenReturn(apiResponseOfNonCommittedUser);
+        assertThat(gitAlarm.hasCommittedToday()).isEqualTo(false);
+        gitAlarm.checkCommit("nokchax");
+        assertThat(gitAlarm.hasCommittedToday()).isEqualTo(false);
     }
 }
