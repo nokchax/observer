@@ -3,9 +3,8 @@ package com.nokchax.observer.component;
 import com.nokchax.observer.service.GitService;
 import com.nokchax.observer.service.SlackService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
 
 
 @Slf4j
@@ -21,7 +20,9 @@ public class GitAlarm {
     }
 
     //todo scheduling
+    @Scheduled(cron = "0 59 12,19,21,23 ? * * *")
     public void checkCommit(String userId) {
+        log.info("Start check commit flag : {}", this.hasCommittedToday);
         if(hasCommittedToday())
             return;
 
@@ -31,6 +32,7 @@ public class GitAlarm {
     }
 
     private void sendMsg(String msg) {
+        log.info("Send Msg");
         if(slackService.sendMsg(msg))
             this.hasCommittedToday = true;
     }
@@ -40,7 +42,10 @@ public class GitAlarm {
     }
 
     //todo scheduling when 00:00 then init commit flag false
+    @Scheduled(cron = "0 0 0 * * *")
     public void init() {
-
+        log.info("Start Init commit flag : {}", this.hasCommittedToday);
+        this.hasCommittedToday = false;
+        log.info("end Init commit flag : {}", this.hasCommittedToday);
     }
 }
