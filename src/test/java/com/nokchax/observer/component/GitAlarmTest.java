@@ -47,4 +47,6 @@ public class GitAlarmTest {
         gitAlarm.checkCommit("nokchax");
         assertThat(gitAlarm.hasCommittedToday()).isEqualTo(false);
     }
+
+    //todo how to test scheduling?
 }
