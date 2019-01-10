@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.notNull;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -24,10 +25,12 @@ public class GitAlarmTest {
     @Mock
     private SlackService slackService;
 
+    //when mock method accept any type of args use any(class) or (class)notNull()
+    //https://stackoverflow.com/questions/5969630/can-mockito-stub-a-method-without-regard-to-the-argument
     @Before
     public void init() {
         gitAlarm = new GitAlarm(gitService, slackService);
-        when(slackService.sendMsg("Do it!")).thenReturn(true);
+        when(slackService.sendMsg((String)notNull())).thenReturn(true);
     }
 
     @Test
