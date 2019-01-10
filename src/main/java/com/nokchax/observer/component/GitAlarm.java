@@ -2,6 +2,7 @@ package com.nokchax.observer.component;
 
 import com.nokchax.observer.service.GitService;
 import com.nokchax.observer.service.SlackService;
+import com.nokchax.observer.util.MessageUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -19,8 +20,12 @@ public class GitAlarm {
         this.slackService = slackService;
     }
 
-    //todo scheduling
-    @Scheduled(cron = "0 59 12,19,21,23 ? * * *")
+    //scheduled annotation not allow method that has argument
+    @Scheduled(cron = "0 59 12,19,21,23 * * *")
+    public void checkMyCommit() {
+        checkCommit("nokchax");
+    }
+
     public void checkCommit(String userId) {
         log.info("Start check commit flag : {}", this.hasCommittedToday);
         if(hasCommittedToday())
@@ -28,7 +33,7 @@ public class GitAlarm {
 
         //send msg using message loader?
         if(gitService.searchCommentsOfToday(userId).hasCommitted())
-            sendMsg("Do it!");
+            sendMsg(MessageUtil.getRandomPressMessage());
     }
 
     private void sendMsg(String msg) {
