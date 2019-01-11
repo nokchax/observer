@@ -4,6 +4,7 @@ import com.nokchax.observer.domain.GitSearchApiResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -17,23 +18,26 @@ public class GitServiceTest {
     @Autowired
     private GitService gitService;
 
+    @Value("${git.myID}")
+    private String myID;
+
     @Test
     public void test() {
         //mock response를 이용해야 하나?
-        GitSearchApiResponse apiResponse = gitService.searchCommentsOfToday("nokchax");
+        GitSearchApiResponse apiResponse = gitService.searchCommentsOfToday(myID);
         assertThat(apiResponse.hasCommitted()).isEqualTo(true);
     }
 
     @Test
     public void searchCommentsTestOfCommittedDate() {
-        GitSearchApiResponse apiResponse = gitService.searchComments("nokchax", LocalDate.of(2019, 1,1 ));
+        GitSearchApiResponse apiResponse = gitService.searchComments(myID, LocalDate.of(2019, 1,1 ));
         assertThat(apiResponse.getCommitCount()).isEqualTo(1);
         assertThat(apiResponse.hasCommitted()).isEqualTo(true);
     }
 
     @Test
     public void searchCommentsTestOfNonCommittedDate() {
-        GitSearchApiResponse apiResponse = gitService.searchComments("nokchax", LocalDate.of(2018, 3,1 ));
+        GitSearchApiResponse apiResponse = gitService.searchComments(myID, LocalDate.of(2018, 3,1 ));
         assertThat(apiResponse.getCommitCount()).isEqualTo(1);
         assertThat(apiResponse.hasCommitted()).isEqualTo(true);
     }
