@@ -24,6 +24,7 @@ public class GitServiceTest {
     @Test
     public void test() {
         //mock response를 이용해야 하나?
+        //todo using mock resttemplate and DI it to gitService
         GitSearchApiResponse apiResponse = gitService.searchCommentsOfToday(myID);
         assertThat(apiResponse.hasCommitted()).isEqualTo(true);
     }
