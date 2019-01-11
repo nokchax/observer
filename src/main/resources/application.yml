@@ -4,6 +4,7 @@ spring:
       enabled: true
 
 git:
+  myID: nokchax
   token: personal access token from git(https://github.com/settings/tokens)
   api:
     search:

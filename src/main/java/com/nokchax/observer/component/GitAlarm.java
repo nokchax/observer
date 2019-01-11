@@ -4,6 +4,7 @@ import com.nokchax.observer.service.GitService;
 import com.nokchax.observer.service.SlackService;
 import com.nokchax.observer.util.MessageUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -15,6 +16,9 @@ public class GitAlarm {
     private SlackService slackService;
     private boolean hasCommittedToday = false;
 
+    @Value("${git.myID}")
+    private String myID;
+
     public GitAlarm(GitService gitService, SlackService slackService) {
         this.gitService = gitService;
         this.slackService = slackService;
@@ -23,7 +27,7 @@ public class GitAlarm {
     //scheduled annotation not allow method that has argument
     @Scheduled(cron = "0 59 12,19,21,23 * * *")
     public void checkMyCommit() {
-        checkCommit("nokchax");
+        checkCommit(myID);
     }
 
     public void checkCommit(String userId) {
