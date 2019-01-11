@@ -13,5 +13,7 @@ public class PayLoad {
     public PayLoad(String text) {
         if(StringUtils.isEmpty(text))
             throw new IllegalArgumentException("Text must not be a null or empty");
+
+        this.text = text;
     }
 }
