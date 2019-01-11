@@ -21,9 +21,6 @@ public class SlackServiceImpl implements SlackService {
     //how about msg validation check in PayLoad() constructor?
     @Override
     public boolean sendMsg(String msg) {
-        if(StringUtils.isEmpty(msg))
-            return false;
-
         ResponseEntity<String> response = restTemplate.postForEntity(
                 webHookUrl,
                 new PayLoad(msg),

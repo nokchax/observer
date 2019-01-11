@@ -1,15 +1,17 @@
 package com.nokchax.observer.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import javax.validation.constraints.NotEmpty;
+import org.springframework.util.StringUtils;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class PayLoad {
-    @NotEmpty//not null and not empty
+    //@NotNull, NotBlank can be apply just bean
     private String text;
+
+    public PayLoad(String text) {
+        if(StringUtils.isEmpty(text))
+            throw new IllegalArgumentException("Text must not be a null or empty");
+    }
 }

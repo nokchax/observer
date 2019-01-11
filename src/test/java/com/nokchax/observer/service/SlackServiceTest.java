@@ -20,7 +20,7 @@ public class SlackServiceTest {
         assertThat(slackService.sendMsg(MessageUtil.getRandomPressMessage())).isEqualTo(true);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void sendMsgFailTest() {
         assertThat(slackService.sendMsg("")).isEqualTo(false);
         assertThat(slackService.sendMsg(null)).isEqualTo(false);
