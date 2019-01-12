@@ -1,6 +1,6 @@
 package com.nokchax.observer.service;
 
-public interface SlackService {
+public interface MessengerService {
     //send slack msg
     boolean sendMsg(String msg);
 }

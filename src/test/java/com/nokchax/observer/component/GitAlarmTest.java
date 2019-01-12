@@ -2,7 +2,7 @@ package com.nokchax.observer.component;
 
 import com.nokchax.observer.domain.GitSearchApiResponse;
 import com.nokchax.observer.service.GitService;
-import com.nokchax.observer.service.SlackService;
+import com.nokchax.observer.service.MessengerService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +24,7 @@ public class GitAlarmTest {
     @Mock
     private GitService gitService;
     @Mock
-    private SlackService slackService;
+    private MessengerService slackService;
     @Value("${git.myID}")
     private String myID;
 

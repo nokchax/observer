@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class SlackServiceImpl implements SlackService {
+public class SlackServiceImpl implements MessengerService {
     @Value("${slack.webhook.urlOfMine}")
     private String webHookUrl;
     private RestTemplate restTemplate;

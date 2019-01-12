@@ -1,7 +1,7 @@
 package com.nokchax.observer.controller;
 
 import com.nokchax.observer.service.GitService;
-import com.nokchax.observer.service.SlackService;
+import com.nokchax.observer.service.MessengerService;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import java.util.Map;
 @RestController
 public class IncomingController {
     private GitService gitService;
-    private SlackService slackService;
+    private MessengerService slackService;
 
     @Autowired
-    public IncomingController(GitService gitService, SlackService slackService) {
+    public IncomingController(GitService gitService, MessengerService slackService) {
         this.gitService = gitService;
         this.slackService = slackService;
     }
