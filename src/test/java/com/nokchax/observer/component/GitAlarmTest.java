@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -24,9 +25,13 @@ public class GitAlarmTest {
     private GitService gitService;
     @Mock
     private SlackService slackService;
+    @Value("${git.myID}")
+    private String myID;
 
-    //when mock method accept any type of args use any(class) or (class)notNull()
-    //https://stackoverflow.com/questions/5969630/can-mockito-stub-a-method-without-regard-to-the-argument
+    /*
+    when mock method accept any type of args use any(class) or (class)notNull()
+    https://stackoverflow.com/questions/5969630/can-mockito-stub-a-method-without-regard-to-the-argument
+     */
     @Before
     public void init() {
         gitAlarm = new GitAlarm(gitService, slackService);
@@ -35,19 +40,19 @@ public class GitAlarmTest {
 
     @Test
     public void pressWhenUserNotCommittedTest() {
-        when(gitService.searchCommentsOfToday("nokchax")).thenReturn(apiResponseOfCommittedUser);
+        when(gitService.searchCommentsOfToday(myID)).thenReturn(apiResponseOfCommittedUser);
 
         assertThat(gitAlarm.hasCommittedToday()).isEqualTo(false);
-        gitAlarm.checkCommit("nokchax");
+        gitAlarm.checkCommit(myID);
         assertThat(gitAlarm.hasCommittedToday()).isEqualTo(true);
     }
 
     @Test
     public void skipWhenUserCommittedTest() {
-        when(gitService.searchCommentsOfToday("nokchax")).thenReturn(apiResponseOfNonCommittedUser);
+        when(gitService.searchCommentsOfToday(myID)).thenReturn(apiResponseOfNonCommittedUser);
 
         assertThat(gitAlarm.hasCommittedToday()).isEqualTo(false);
-        gitAlarm.checkCommit("nokchax");
+        gitAlarm.checkCommit(myID);
         assertThat(gitAlarm.hasCommittedToday()).isEqualTo(false);
     }
 
