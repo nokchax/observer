@@ -21,8 +21,12 @@ public class SlackServiceTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void sendMsgFailTest() {
+    public void sendMsgFailTestWithEmptyMsg() {
         assertThat(slackService.sendMsg("")).isEqualTo(false);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void sendMsgFailTestWithNullParam() {
         assertThat(slackService.sendMsg(null)).isEqualTo(false);
     }
 }

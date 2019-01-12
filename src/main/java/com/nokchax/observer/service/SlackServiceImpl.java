@@ -4,7 +4,6 @@ import com.nokchax.observer.domain.PayLoad;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -18,7 +17,6 @@ public class SlackServiceImpl implements SlackService {
     }
 
     //todo exception handling
-    //how about msg validation check in PayLoad() constructor?
     @Override
     public boolean sendMsg(String msg) {
         ResponseEntity<String> response = restTemplate.postForEntity(
