@@ -50,7 +50,6 @@ public class GitAlarm {
         return this.hasCommittedToday;
     }
 
-    //todo scheduling when 00:00 then init commit flag false
     @Scheduled(cron = "0 0 0 * * *")
     public void init() {
         log.info("Start Init commit flag : {}", this.hasCommittedToday);
