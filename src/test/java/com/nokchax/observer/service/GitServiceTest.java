@@ -21,14 +21,9 @@ public class GitServiceTest {
     @Value("${git.myID}")
     private String myID;
 
-    @Test
-    public void test() {
-        //mock response를 이용해야 하나?
-        //todo using mock resttemplate and DI it to gitService
-        GitSearchApiResponse apiResponse = gitService.searchCommentsOfToday(myID);
-        assertThat(apiResponse.hasCommitted()).isEqualTo(true);
-    }
-
+    /*
+    todo searchCommentTestOfToday test
+     */
     @Test
     public void searchCommentsTestOfCommittedDate() {
         GitSearchApiResponse apiResponse = gitService.searchComments(myID, LocalDate.of(2019, 1,1 ));
