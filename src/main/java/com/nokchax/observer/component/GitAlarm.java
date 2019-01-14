@@ -31,7 +31,7 @@ public class GitAlarm {
         checkCommit(myID);
     }
 
-    private void checkCommit(String userId) {
+    public void checkCommit(String userId) {
         log.info("Start check commit flag : {}", this.hasCommittedToday);
         if(hasCommittedToday)
             return;
@@ -53,5 +53,9 @@ public class GitAlarm {
         log.info("Start Init commit flag : {}", this.hasCommittedToday);
         this.hasCommittedToday = false;
         log.info("end Init commit flag : {}", this.hasCommittedToday);
+    }
+
+    public boolean hasCommittedToday() {
+        return this.hasCommittedToday;
     }
 }
