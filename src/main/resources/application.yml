@@ -3,6 +3,12 @@ spring:
     livereload:
       enabled: true
 
+logging:
+  level:
+    root: info
+  file: /data/log/observer/obersver.log
+    maxhistory: 7
+
 git:
   myID: nokchax
   token: personal access token from git(https://github.com/settings/tokens)
