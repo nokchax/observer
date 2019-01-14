@@ -3,11 +3,14 @@ spring:
     livereload:
       enabled: true
 
+# loggin.file , logging.file.maxHistory
+# https://github.com/spring-projects/spring-boot/issues/12510
+logging.file: /data/log/observer/obersver.log
 logging:
   level:
     root: info
-  file: /data/log/observer/obersver.log
-    maxhistory: 7
+  file:
+    max-history: 7
 
 git:
   myID: nokchax
