@@ -1,5 +1,6 @@
 package com.nokchax.observer.component;
 
+import com.nokchax.observer.domain.GitSearchApiResponse;
 import com.nokchax.observer.service.GitService;
 import com.nokchax.observer.service.MessengerService;
 import com.nokchax.observer.util.MessageUtil;
@@ -25,29 +26,26 @@ public class GitAlarm {
     }
 
     //scheduled annotation not allow method that has argument
-    @Scheduled(cron = "0 59 12,19,21,23 * * *")
+    @Scheduled(cron = "0 59 12,19,20,22 * * *")
     public void checkMyCommit() {
         checkCommit(myID);
     }
 
-    public void checkCommit(String userId) {
+    private void checkCommit(String userId) {
         log.info("Start check commit flag : {}", this.hasCommittedToday);
-        if(hasCommittedToday())
+        if(hasCommittedToday)
             return;
 
-        //send msg using message loader?
-        if(gitService.searchCommentsOfToday(userId).hasCommitted())
-            sendMsg(MessageUtil.getRandomPressMessage());
+        checkCommitAndSendMsg(userId);
     }
 
-    private void sendMsg(String msg) {
+    private void checkCommitAndSendMsg(String userId) {
         log.info("Send Msg");
-        if(slackService.sendMsg(msg))
-            this.hasCommittedToday = true;
-    }
+        GitSearchApiResponse myCommitResponse = gitService.searchCommentsOfToday(userId);
 
-    public boolean hasCommittedToday() {
-        return this.hasCommittedToday;
+        slackService.sendMsg(MessageUtil.getMessageByGitApiResponse(myCommitResponse));
+
+        this.hasCommittedToday = myCommitResponse.hasCommitted();
     }
 
     @Scheduled(cron = "0 0 0 * * *")
