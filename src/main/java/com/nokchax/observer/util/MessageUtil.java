@@ -8,9 +8,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class MessageUtil {
     private static final List<String> PRESS_MESSAGES = Arrays.asList(
-            "Do commit",
+            "절대 커밋해!",
             "커밋... 안하시나요?",
-            "누구인가? 누가 감히 커밋도 안하고 놀아?"
+            "누구인가? 누가 감히 커밋도 안하고 놀아?",
+            "여봐라 이자를 매우 쳐라"
     );
     private static final List<String> CELEBRATION_MESSAGES = Arrays.asList(
             "Commit complete :)",
