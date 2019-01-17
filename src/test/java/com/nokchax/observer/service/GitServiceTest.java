@@ -58,6 +58,14 @@ public class GitServiceTest {
     }
     @Test
     public void searchCommentsTestOfCommittedDate() {
+        GitSearchApiResponse response = new GitSearchApiResponse(1);
+        Mockito.when(mockRestTemplate.exchange(
+                ArgumentMatchers.anyString(),
+                ArgumentMatchers.any(HttpMethod.class),
+                ArgumentMatchers.any(),
+                ArgumentMatchers.eq(GitSearchApiResponse.class)
+        )).thenReturn(new ResponseEntity(response, HttpStatus.OK));
+
         GitSearchApiResponse apiResponse = gitService.searchComments(myID, LocalDate.of(2019, 1,1 ));
         assertThat(apiResponse.getCommitCount()).isEqualTo(1);
         assertThat(apiResponse.hasCommitted()).isEqualTo(true);
@@ -65,8 +73,16 @@ public class GitServiceTest {
 
     @Test
     public void searchCommentsTestOfNonCommittedDate() {
+        GitSearchApiResponse response = new GitSearchApiResponse(0);
+        Mockito.when(mockRestTemplate.exchange(
+                ArgumentMatchers.anyString(),
+                ArgumentMatchers.any(HttpMethod.class),
+                ArgumentMatchers.any(),
+                ArgumentMatchers.eq(GitSearchApiResponse.class)
+        )).thenReturn(new ResponseEntity(response, HttpStatus.OK));
+
         GitSearchApiResponse apiResponse = gitService.searchComments(myID, LocalDate.of(2018, 3,1 ));
-        assertThat(apiResponse.getCommitCount()).isEqualTo(1);
-        assertThat(apiResponse.hasCommitted()).isEqualTo(true);
+        assertThat(apiResponse.getCommitCount()).isEqualTo(0);
+        assertThat(apiResponse.hasCommitted()).isEqualTo(false);
     }
 }
