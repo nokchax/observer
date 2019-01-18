@@ -23,3 +23,8 @@ git:
 slack:
   webhook:
     urlOfMine: u can get url from Incoming WebHooks slack app
+
+naver:
+  oauth:
+    clientId:
+    clientSecret:
