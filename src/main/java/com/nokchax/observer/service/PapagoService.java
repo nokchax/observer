@@ -11,9 +11,9 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 public class PapagoService implements TranslateService {
-    @Value("naver.oauth.clientId")
+    @Value("${naver.oauth.clientId}")
     private String clientId;
-    @Value("naver.oauth.clientSecret")
+    @Value("${naver.oauth.clientSecret}")
     private String clientSecret;
 
     private RestTemplate restTemplate;
