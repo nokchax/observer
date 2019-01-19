@@ -1,6 +1,7 @@
 package com.nokchax.observer.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.nokchax.observer.domain.PapagoRequestBody;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -38,9 +39,8 @@ public class PapagoService implements TranslateService {
         return response.getBody().get("message").get("result").get("translatedText").asText();
     }
 
-    public HttpEntity<?> createHttpEntity(String word) {
-
-        return new HttpEntity("source=ko&target=en&text=" + word, headers);
+    public HttpEntity createHttpEntity(String word) {
+        return new HttpEntity(new PapagoRequestBody(word).toBody(), headers);
     }
 
     @PostConstruct

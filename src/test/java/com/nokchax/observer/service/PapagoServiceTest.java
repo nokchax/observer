@@ -14,17 +14,17 @@ public class PapagoServiceTest {
     @Autowired
     private TranslateService papagoService;
 
-    //
+    //한국어를 입력 받으면 영어로 번역된 결과를 리턴한다.
     @Test
     public void translateKoToEnTest() {
-        //한국어를 입력 받으면 영어를 리턴한다.
-        String translatedWord = papagoService.translate("사과");
-
-        assertThat(translatedWord).isEqualTo("apple");
+        assertThat(papagoService.translate("사과"))
+                .isEqualTo("apple");
     }
 
+    //영어를 입력 받으면 한국어로 번역된 결과를 리턴한다.
     @Test
     public void translateEnToKoTest() {
-
+        assertThat(papagoService.translate("apple"))
+                .isEqualTo("사과");
     }
 }
