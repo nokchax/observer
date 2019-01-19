@@ -32,4 +32,16 @@ public class PapagoRequestBodyTest {
         assertThat(Language.checkLanguage("Is this English!?'\"!@#$%^&*()-=+`~"))
                 .isEqualTo(Language.EN);
     }
+
+    @Test
+    public void getPairLanguage_EN_TO_KO() {
+        assertThat(Language.EN.getPair())
+                .isEqualTo(Language.KO);
+    }
+
+    @Test
+    public void getPairLanguage_KO_TO_EN() {
+        assertThat(Language.KO.getPair())
+                .isEqualTo(Language.EN);
+    }
 }

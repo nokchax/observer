@@ -15,6 +15,17 @@ public enum Language {
         return language;
     }
 
+    public Language getPair() {
+        switch(this) {
+            case KO:
+                return EN;
+            case EN:
+                return KO;
+            default:
+        }
+        return null;
+    }
+
     public static Language checkLanguage(String text) {
 
         return text.chars()
