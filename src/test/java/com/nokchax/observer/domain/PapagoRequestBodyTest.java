@@ -18,4 +18,17 @@ public class PapagoRequestBodyTest {
 
         assertThat(language).isEqualTo(Language.KO);
     }
+
+    @Test
+    public void checkLanguageEN_test() {
+        Language language = PapagoRequestBody.checkLanguage("Is this English?");
+
+        assertThat(language).isEqualTo(Language.EN);
+    }
+
+    @Test
+    public void checkLanguageWithNonAlphabet() {
+        assertThat(PapagoRequestBody.checkLanguage("Is this English!?'\"!@#$%^&*()-=+`~"))
+                .isEqualTo(Language.EN);
+    }
 }
