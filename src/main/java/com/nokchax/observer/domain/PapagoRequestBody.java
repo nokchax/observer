@@ -17,9 +17,4 @@ public class PapagoRequestBody {
     public PapagoRequestBody(String text) {
     }
 
-    public static Language checkLanguage(String text) {
-
-        return text.chars()
-                .anyMatch(x -> x > 127) ? Language.KO : Language.EN;
-    }
 }

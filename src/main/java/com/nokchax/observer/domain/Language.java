@@ -14,4 +14,10 @@ public enum Language {
     public String getLanguage() {
         return language;
     }
+
+    public static Language checkLanguage(String text) {
+
+        return text.chars()
+                .anyMatch(x -> x > 127) ? KO : EN;
+    }
 }

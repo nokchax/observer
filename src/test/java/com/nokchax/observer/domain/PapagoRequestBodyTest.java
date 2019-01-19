@@ -12,23 +12,24 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PapagoRequestBodyTest {
+    /*
+    현재는 영어 문장이 아닐 경우는 무조건 한글로 판단하도록 한다.
+     */
     @Test
     public void checkLanguageKO_test() {
-        Language language = PapagoRequestBody.checkLanguage("이것은 한글인가?");
-
-        assertThat(language).isEqualTo(Language.KO);
+        assertThat(Language.checkLanguage("이것은 한글인가?"))
+                .isEqualTo(Language.KO);
     }
 
     @Test
     public void checkLanguageEN_test() {
-        Language language = PapagoRequestBody.checkLanguage("Is this English?");
-
-        assertThat(language).isEqualTo(Language.EN);
+        assertThat(Language.checkLanguage("Is this English?"))
+                .isEqualTo(Language.EN);
     }
 
     @Test
     public void checkLanguageWithNonAlphabet() {
-        assertThat(PapagoRequestBody.checkLanguage("Is this English!?'\"!@#$%^&*()-=+`~"))
+        assertThat(Language.checkLanguage("Is this English!?'\"!@#$%^&*()-=+`~"))
                 .isEqualTo(Language.EN);
     }
 }
