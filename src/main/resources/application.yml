@@ -28,3 +28,4 @@ naver:
   oauth:
     clientId:
     clientSecret:
+  apiUrl: https://openapi.naver.com/v1/papago/n2mt

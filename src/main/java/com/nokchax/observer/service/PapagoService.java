@@ -18,6 +18,8 @@ public class PapagoService implements TranslateService {
     private String clientId;
     @Value("${naver.oauth.clientSecret}")
     private String clientSecret;
+    @Value("${naver.apiUrl}")
+    private String apiUrl;
 
     private HttpHeaders headers;
 
@@ -30,7 +32,7 @@ public class PapagoService implements TranslateService {
     @Override
     public String translate(String word) {
         ResponseEntity<JsonNode> response = restTemplate.exchange(
-                "https://openapi.naver.com/v1/papago/n2mt",
+                apiUrl,
                 HttpMethod.POST,
                 createHttpEntity(word),
                 JsonNode.class
