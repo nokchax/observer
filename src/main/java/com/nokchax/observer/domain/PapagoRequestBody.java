@@ -15,6 +15,12 @@ public class PapagoRequestBody {
     private String text;
 
     public PapagoRequestBody(String text) {
+        this.source = Language.checkLanguage(text);
+        this.target = source.getPair();
+        this.text = text;
     }
 
+    public String toBody() {
+        return String.format(form, source.getLanguage(), target.getLanguage(), text);
+    }
 }
