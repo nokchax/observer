@@ -43,6 +43,7 @@ public class PapagoService implements TranslateService {
         return new HttpEntity(new PapagoRequestBody(word).toBody(), headers);
     }
 
+    // content_type 이 아래와 같을 경우 body는 key=value&key2=value2&... 와 같이 들어가야 한다.
     @PostConstruct
     public void init() {
         headers = new HttpHeaders();
