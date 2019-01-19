@@ -9,12 +9,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.annotation.PostConstruct;
+
 @Service
 public class PapagoService implements TranslateService {
     @Value("${naver.oauth.clientId}")
     private String clientId;
     @Value("${naver.oauth.clientSecret}")
     private String clientSecret;
+
+    private HttpHeaders headers;
 
     private RestTemplate restTemplate;
 
@@ -24,19 +28,26 @@ public class PapagoService implements TranslateService {
 
     @Override
     public String translate(String word) {
-        HttpHeaders header = new HttpHeaders();
-        header.add(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded; charset=UTF-8");
-        header.add("X-Naver-Client-Id", clientId);
-        header.add("X-Naver-Client-Secret", clientSecret);
-
         ResponseEntity<JsonNode> response = restTemplate.exchange(
                 "https://openapi.naver.com/v1/papago/n2mt",
                 HttpMethod.POST,
-                new HttpEntity("source=ko&target=en&text=" + word, header),
+                createHttpEntity(word),
                 JsonNode.class
         );
-        System.out.println(response.getBody().get("message").get("result").get("translatedText").asText());
 
         return response.getBody().get("message").get("result").get("translatedText").asText();
+    }
+
+    public HttpEntity<?> createHttpEntity(String word) {
+
+        return new HttpEntity("source=ko&target=en&text=" + word, headers);
+    }
+
+    @PostConstruct
+    public void init() {
+        headers = new HttpHeaders();
+        headers.add(HttpHeaders.CONTENT_TYPE, "application/x-www-form-urlencoded; charset=UTF-8");
+        headers.add("X-Naver-Client-Id", clientId);
+        headers.add("X-Naver-Client-Secret", clientSecret);
     }
 }
