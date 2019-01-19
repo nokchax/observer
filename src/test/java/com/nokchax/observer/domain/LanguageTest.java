@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 // spring web을 실행시킬 필요가 없는데 이렇게 테스트하는게 맞을까?
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class PapagoRequestBodyTest {
+public class LanguageTest {
     /*
     현재는 영어 문장이 아닐 경우는 무조건 한글로 판단하도록 한다.
      */
