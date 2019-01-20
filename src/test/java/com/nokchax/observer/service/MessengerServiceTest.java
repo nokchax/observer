@@ -13,20 +13,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest
 public class MessengerServiceTest {
     @Autowired
-    MessengerService slackService;
+    MessengerService slackMessageService;
 
     @Test
     public void sendMsgTest() {
-        assertThat(slackService.sendMsg(MessageUtil.getRandomPressMessage())).isEqualTo(true);
+        assertThat(slackMessageService.sendMsg(MessageUtil.getRandomPressMessage())).isEqualTo(true);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void sendMsgFailTestWithEmptyMsg() {
-        assertThat(slackService.sendMsg("")).isEqualTo(false);
+        assertThat(slackMessageService.sendMsg("")).isEqualTo(false);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void sendMsgFailTestWithNullParam() {
-        assertThat(slackService.sendMsg(null)).isEqualTo(false);
+        assertThat(slackMessageService.sendMsg(null)).isEqualTo(false);
     }
 }
