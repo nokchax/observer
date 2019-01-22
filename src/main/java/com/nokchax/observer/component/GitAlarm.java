@@ -2,7 +2,7 @@ package com.nokchax.observer.component;
 
 import com.nokchax.observer.domain.GitSearchApiResponse;
 import com.nokchax.observer.service.GitService;
-import com.nokchax.observer.service.MessengerService;
+import com.nokchax.observer.service.WebhookService;
 import com.nokchax.observer.util.MessageUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,13 +14,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class GitAlarm {
     private GitService gitService;
-    private MessengerService slackService;
+    private WebhookService slackService;
     private boolean hasCommittedToday = false;
 
     @Value("${git.myID}")
     private String myID;
 
-    public GitAlarm(GitService gitService, MessengerService slackService) {
+    public GitAlarm(GitService gitService, WebhookService slackService) {
         this.gitService = gitService;
         this.slackService = slackService;
     }
