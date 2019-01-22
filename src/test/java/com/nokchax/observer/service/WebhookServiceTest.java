@@ -11,9 +11,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MessengerServiceTest {
+public class WebhookServiceTest {
     @Autowired
-    MessengerService slackMessageService;
+    WebhookService slackMessageService;
 
     @Test
     public void sendMsgTest() {
