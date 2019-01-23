@@ -10,6 +10,6 @@ import org.springframework.stereotype.Service;
 public class SlackMessengerService implements MessengerService {
     @Override
     public boolean sendMessage(Message message) {
-        return false;
+        return true;
     }
 }
