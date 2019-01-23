@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 public class Message {
-    private String message;
+    private String text;
     private String channel;
 
-    public Message(String message) {
-        this.message = message;
+    public Message(String text) {
+        this.text = text;
     }
-    public Message(String message, String channel) {
-        this.message = message;
+    public Message(String text, String channel) {
+        this.text = text;
         this.channel = channel;
     }
 }

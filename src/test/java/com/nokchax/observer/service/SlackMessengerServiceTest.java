@@ -43,4 +43,11 @@ public class SlackMessengerServiceTest {
         assertThat(slackMessengerService.sendMessage(message))
                 .isEqualTo(true);
     }
+
+    @Test
+    public void sendKoreanMessageTest() {
+        Message message = new Message("한글", privateChannel);
+        assertThat(slackMessengerService.sendMessage(message))
+                .isEqualTo(true);
+    }
 }
