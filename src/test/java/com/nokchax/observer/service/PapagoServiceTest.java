@@ -27,4 +27,14 @@ public class PapagoServiceTest {
         assertThat(papagoService.translate("apple"))
                 .isEqualTo("사과");
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void translateTestWithEmptyString() {
+        papagoService.translate("");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void translateTestWithNull() {
+        papagoService.translate(null);
+    }
 }
