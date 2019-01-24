@@ -51,6 +51,13 @@ public class SlackMessengerServiceTest {
                 .isEqualTo(true);
     }
 
+    @Test
+    public void sendMessageInvalidChannel() {
+        Message message = new Message("한글", "없는채널");
+        assertThat(slackMessengerService.sendMessage(message))
+                .isEqualTo(false);
+    }
+
     @Test(expected = IllegalArgumentException.class)
     public void sendMessageTestWithNull() {
         slackMessengerService.sendMessage(new Message(null, privateChannel));
