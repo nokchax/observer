@@ -50,4 +50,14 @@ public class SlackMessengerServiceTest {
         assertThat(slackMessengerService.sendMessage(message))
                 .isEqualTo(true);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void sendMessageTestWithNull() {
+        slackMessengerService.sendMessage(new Message(null, privateChannel));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void sendMessageTestWithEmptyString() {
+        slackMessengerService.sendMessage(new Message("", privateChannel));
+    }
 }

@@ -2,7 +2,6 @@ package com.nokchax.observer.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.nokchax.observer.domain.Message;
-import com.nokchax.observer.domain.SlackMessage;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

@@ -3,6 +3,7 @@ package com.nokchax.observer.domain;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.util.StringUtils;
 
 @Data
 @Builder
@@ -12,10 +13,13 @@ public class Message {
     private String channel;
 
     public Message(String text) {
+        if(StringUtils.isEmpty(text))
+            throw new IllegalArgumentException("Text must not be a null or empty");
+
         this.text = text;
     }
     public Message(String text, String channel) {
-        this.text = text;
-        this.channel = channel;
+        Message message = new Message(text);
+        message.channel = channel;
     }
 }
