@@ -25,6 +25,7 @@ public class IncomingController {
     }
 
     // todo 예외가 발생하면 controller advice에서 잡아서 error 메세지를 체널로 응답한다.
+    // todo spring @Controller / @RequestMapping 처럼 필터에서 미리 데이터를 받아서 DISPATCH 시킬 수 있게 만들기
     @PostMapping("/bot")
     public Map<String, Object> incoming(@RequestBody Map<String, Object> body) {
         //todo check token from slack filter level
