@@ -33,6 +33,7 @@ public class IncomingControllerTest {
     @Before
     public void init() {
         //request body를 좀 더 깔끔하게 할순 없을까
+        //https://stackoverflow.com/questions/30691949/how-to-inject-a-map-using-the-value-spring-annotation
         Map<String, Object> event = new HashMap<>();
 
         event.put("type", "message");
