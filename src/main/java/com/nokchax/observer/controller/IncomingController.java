@@ -14,27 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
-/*
-{
-    token=HWw8VPW9WV7oU1sfQ3D1YTIc,
-    team_id=TEW89TQA2,
-    api_app_id=AF53X2LKG,
-    event={
-        client_msg_id=ecdb760a-301b-4ab2-8b90-4574df54a12b,
-        type=message,
-        text=hi,
-        user=UEV2B9PD3,
-        ts=1548416095.000200,
-        channel=CEW89TU4E,
-        event_ts=1548416095.000200,
-        channel_type=channel
-    },
-    type=event_callback,
-    event_id=EvFQ4S1XRV,
-    event_time=1548416095,
-    authed_users=[UEV2B9PD3]
-}
- */
 
 @Slf4j
 @Setter
