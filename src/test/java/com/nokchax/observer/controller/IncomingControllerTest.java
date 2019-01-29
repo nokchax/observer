@@ -31,7 +31,6 @@ public class IncomingControllerTest {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    @Value("#{${request.body}}")
     private Map<String, Object> requestBody;
 
     @Before
