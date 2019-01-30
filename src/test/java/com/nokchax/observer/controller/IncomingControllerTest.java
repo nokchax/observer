@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /*
 mock mvc test link
@@ -24,7 +26,6 @@ https://stackoverflow.com/questions/18336277/how-to-check-string-in-response-bod
  */
 @WebMvcTest
 @RunWith(SpringRunner.class)
-@TestPropertySource(locations="classpath:test.yml")
 public class IncomingControllerTest {
     @Autowired
     MockMvc mvc;
@@ -37,7 +38,8 @@ public class IncomingControllerTest {
     public void init() {
         //request body를 좀 더 깔끔하게 할순 없을까
         //https://stackoverflow.com/questions/30691949/how-to-inject-a-map-using-the-value-spring-annotation
-/*        Map<String, Object> event = new HashMap<>();
+        requestBody = new HashMap<>();
+        Map<String, Object> event = new HashMap<>();
 
         event.put("type", "message");
         event.put("text", "hi");
@@ -47,17 +49,19 @@ public class IncomingControllerTest {
         event.put("event_ts", 1548416095.000200);
         event.put("channel_type", "channel");
 
-        requestBody.put("event", event);*/
+        requestBody.put("event", event);
     }
 
+    /*
+    As Slack sends your request URL events, we ask that you return a HTTP 200 OK for each event you successfully receive.
+     */
     @Test
     public void botControllerTest() throws Exception {
         mvc.perform(
                 post("/bot")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(requestBody))
-        );
-
-        //.Expect()~~
+        ).andExpect(status().isOk())
+        .andDo(print());
     }
 }
