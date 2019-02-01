@@ -35,17 +35,4 @@ public class EventType {
     private String eventId;
     private Integer eventTime;
     private List<String> authedUsers;
-
-    /*
-    https://api.slack.com/events/message
-     */
-    @Data
-    @NoArgsConstructor
-    class Event {
-        private String type;
-        private String channel;
-        private String user;
-        private String text;
-        private String ts;
-    }
 }
