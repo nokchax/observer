@@ -26,7 +26,7 @@ https://stackoverflow.com/questions/18336277/how-to-check-string-in-response-bod
  */
 @WebMvcTest
 @RunWith(SpringRunner.class)
-public class IncomingControllerTest {
+public class SlackMessageControllerTest {
     @Autowired
     MockMvc mvc;
 
