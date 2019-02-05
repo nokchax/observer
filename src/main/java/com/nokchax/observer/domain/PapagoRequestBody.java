@@ -4,8 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.util.StringUtils;
 
-import javax.validation.constraints.NotBlank;
-
 @Data
 @NoArgsConstructor
 public class PapagoRequestBody {

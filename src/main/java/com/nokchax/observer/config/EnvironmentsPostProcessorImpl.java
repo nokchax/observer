@@ -28,8 +28,10 @@ public class EnvironmentsPostProcessorImpl implements EnvironmentPostProcessor {
 
     @Override
     public void postProcessEnvironment(ConfigurableEnvironment environment, SpringApplication application) {
-        sourceFiles.forEach(path -> environment.getPropertySources()
-                .addFirst(loadYaml(new FileSystemResource(path))));
+        sourceFiles.forEach(
+                path -> environment.getPropertySources()
+                .addFirst(loadYaml(new FileSystemResource(path)))
+        );
     }
 
     //todo if path not exist pass source and log it
