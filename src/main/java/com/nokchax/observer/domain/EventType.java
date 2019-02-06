@@ -1,5 +1,6 @@
 package com.nokchax.observer.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,10 +30,15 @@ https://api.slack.com/types/event
 @NoArgsConstructor
 public class EventType {
     private String token;
+    @JsonProperty("team_id")
     private String teamId;
+    @JsonProperty("api_app_id")
     private String apiAppId;
     private Event event;
+    @JsonProperty("event_id")
     private String eventId;
+    @JsonProperty("event_time")
     private Integer eventTime;
+    @JsonProperty("authed_users")
     private List<String> authedUsers;
 }
