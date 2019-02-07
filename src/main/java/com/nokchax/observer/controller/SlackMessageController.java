@@ -19,6 +19,8 @@ public class SlackMessageController {
     public String incoming(@RequestBody EventType eventType) {
         //todo check token from slack filter level
         System.out.println(eventType);
+        //text의 prefix에 따라 처리하기..
+        //eventType.getEvent().getText();
 
         return eventType.toString();
     }
