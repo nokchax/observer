@@ -31,4 +31,10 @@ public class CommandTypeTest {
         assertThat(CommandType.getCommandType(""))
                 .isEqualTo(CommandType.NONE);
     }
+
+    @Test
+    public void getCommandTypeTest_undefinedCommand() {
+        assertThat(CommandType.getCommandType("/언디파인드"))
+                .isEqualTo(CommandType.NONE);
+    }
 }
