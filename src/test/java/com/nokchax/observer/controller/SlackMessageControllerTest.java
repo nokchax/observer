@@ -55,6 +55,8 @@ public class SlackMessageControllerTest {
      */
     @Test
     public void botControllerTest() throws Exception {
+        //language=JSON
+        String requestJsonBody = "{\"type\" : \"123\", \"awef\" : \"p1o23jp123\"}";
         mvc.perform(
                 post("/bot")
                 .contentType(MediaType.APPLICATION_JSON)
