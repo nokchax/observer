@@ -28,39 +28,17 @@ public class SlackMessageControllerTest {
     @Autowired
     MockMvc mvc;
 
-    private ObjectMapper objectMapper = new ObjectMapper();
-
-    private Map<String, Object> requestBody;
-
-    @Before
-    public void init() {
-        //request body를 좀 더 깔끔하게 할순 없을까
-        //https://stackoverflow.com/questions/30691949/how-to-inject-a-map-using-the-value-spring-annotation
-        requestBody = new HashMap<>();
-        Map<String, Object> event = new HashMap<>();
-
-        event.put("type", "message");
-        event.put("text", "hi");
-        event.put("user", "WEF123123");
-        event.put("ts", 1548416095.000200);
-        event.put("channel", "CEW8123UEW");
-        event.put("event_ts", 1548416095.000200);
-        event.put("channel_type", "channel");
-
-        requestBody.put("event", event);
-    }
-
     /*
     As Slack sends your request URL events, we ask that you return a HTTP 200 OK for each event you successfully receive.
      */
     @Test
     public void botControllerTest() throws Exception {
         //language=JSON
-        String requestJsonBody = "{\"type\" : \"123\", \"awef\" : \"p1o23jp123\"}";
+        String requestJsonBody = "{\"type\" : \"message\", \"text\" : \"hi\", \"user\" : \"WEF123123\", \"ts\" : 1548416095.000200, \"channel\" : \"CEW8123UEW\", \"event_ts\" : 1548416095.000200, \"channel_type\" : \"channel\"}\n";
         mvc.perform(
                 post("/bot")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(requestBody))
+                .content(requestJsonBody)
         ).andExpect(status().isOk())
         .andDo(print());
     }
