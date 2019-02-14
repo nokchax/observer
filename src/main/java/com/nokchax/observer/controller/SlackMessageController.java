@@ -1,5 +1,6 @@
 package com.nokchax.observer.controller;
 
+import com.nokchax.observer.domain.CommandType;
 import com.nokchax.observer.domain.EventType;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,14 @@ public class SlackMessageController {
         System.out.println(eventType);
         //text의 prefix에 따라 처리하기..
         //eventType.getEvent().getText();
+        switch(eventType.getCommandType()) {
+            case COMMIT_CHECK:
+                break;
+            case TRANSLATE:
+                break;
+            default:
+
+        }
 
         return eventType.toString();
     }

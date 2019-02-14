@@ -41,4 +41,8 @@ public class EventType {
     private Integer eventTime;
     @JsonProperty("authed_users")
     private List<String> authedUsers;
+
+    public CommandType getCommandType() {
+        return event.getCommandType();
+    }
 }

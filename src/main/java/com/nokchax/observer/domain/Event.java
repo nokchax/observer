@@ -14,4 +14,8 @@ public class Event {
     private String user;
     private String text;
     private String ts;
+
+    public CommandType getCommandType() {
+        return CommandType.getCommandType(this.text);
+    }
 }
