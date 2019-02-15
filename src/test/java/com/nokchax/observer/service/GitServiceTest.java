@@ -42,15 +42,7 @@ public class GitServiceTest {
      */
     @Test
     public void searchCommentTestOfToday() {
-        GitSearchApiResponse response = new GitSearchApiResponse(1);
-
-        Mockito.when(mockRestTemplate.exchange(
-                ArgumentMatchers.anyString(),
-                ArgumentMatchers.any(HttpMethod.class),
-                ArgumentMatchers.any(),
-                ArgumentMatchers.eq(GitSearchApiResponse.class)
-        )).thenReturn(new ResponseEntity(response, HttpStatus.OK));
-
+        initMock(new GitSearchApiResponse(1));
 
         GitSearchApiResponse apiResponse = gitService.searchCommentsOfToday(myID);
         assertThat(apiResponse.getCommitCount()).isEqualTo(1);
@@ -58,13 +50,7 @@ public class GitServiceTest {
     }
     @Test
     public void searchCommentsTestOfCommittedDate() {
-        GitSearchApiResponse response = new GitSearchApiResponse(1);
-        Mockito.when(mockRestTemplate.exchange(
-                ArgumentMatchers.anyString(),
-                ArgumentMatchers.any(HttpMethod.class),
-                ArgumentMatchers.any(),
-                ArgumentMatchers.eq(GitSearchApiResponse.class)
-        )).thenReturn(new ResponseEntity(response, HttpStatus.OK));
+        initMock(new GitSearchApiResponse(1));
 
         GitSearchApiResponse apiResponse = gitService.searchComments(myID, LocalDate.of(2019, 1,1 ));
         assertThat(apiResponse.getCommitCount()).isEqualTo(1);
@@ -73,16 +59,19 @@ public class GitServiceTest {
 
     @Test
     public void searchCommentsTestOfNonCommittedDate() {
-        GitSearchApiResponse response = new GitSearchApiResponse(0);
+        initMock(new GitSearchApiResponse(0));
+
+        GitSearchApiResponse apiResponse = gitService.searchComments(myID, LocalDate.of(2018, 3,1 ));
+        assertThat(apiResponse.getCommitCount()).isEqualTo(0);
+        assertThat(apiResponse.hasCommitted()).isEqualTo(false);
+    }
+
+    private void initMock(GitSearchApiResponse response) {
         Mockito.when(mockRestTemplate.exchange(
                 ArgumentMatchers.anyString(),
                 ArgumentMatchers.any(HttpMethod.class),
                 ArgumentMatchers.any(),
                 ArgumentMatchers.eq(GitSearchApiResponse.class)
         )).thenReturn(new ResponseEntity(response, HttpStatus.OK));
-
-        GitSearchApiResponse apiResponse = gitService.searchComments(myID, LocalDate.of(2018, 3,1 ));
-        assertThat(apiResponse.getCommitCount()).isEqualTo(0);
-        assertThat(apiResponse.hasCommitted()).isEqualTo(false);
     }
 }

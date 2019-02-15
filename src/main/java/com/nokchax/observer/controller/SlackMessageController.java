@@ -20,7 +20,15 @@ public class SlackMessageController {
         //todo check token from slack filter level
         System.out.println(eventType);
         //text의 prefix에 따라 처리하기..
-        //eventType.getEvent().getText();
+
+        switch(eventType.getCommandType()) {
+            case COMMIT_CHECK:
+                break;
+            case TRANSLATE:
+                break;
+            default:
+
+        }
 
         return eventType.toString();
     }
