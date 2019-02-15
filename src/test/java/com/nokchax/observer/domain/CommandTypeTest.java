@@ -9,9 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CommandTypeTest {
     @Test
     public void getCommandTypeTest_TRANSLATE() {
-        CommandType type = CommandType.getCommandType("/번역");
-
-        assertThat(type).isEqualTo(CommandType.TRANSLATE);
+        assertThat(CommandType.getCommandType("/번역")).isEqualTo(CommandType.TRANSLATE);
     }
 
     @Test
