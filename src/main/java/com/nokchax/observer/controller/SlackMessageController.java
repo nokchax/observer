@@ -1,5 +1,6 @@
 package com.nokchax.observer.controller;
 
+import com.nokchax.observer.component.GitAlarm;
 import com.nokchax.observer.domain.EventType;
 import com.nokchax.observer.service.GitService;
 import com.nokchax.observer.service.TranslateService;
@@ -14,11 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @Setter
 @RestController
 public class SlackMessageController {
-    private GitService gitService;
+    private GitAlarm gitAlarm;
     private TranslateService translateService;
 
-    public SlackMessageController(GitService gitService, TranslateService translateService) {
-        this.gitService = gitService;
+    public SlackMessageController(GitAlarm gitAlarm, TranslateService translateService) {
+        this.gitAlarm = gitAlarm;
         this.translateService = translateService;
     }
 
@@ -32,6 +33,7 @@ public class SlackMessageController {
 
         switch(eventType.getCommandType()) {
             case COMMIT_CHECK:
+                gitAlarm.checkMyCommit();
                 break;
             case TRANSLATE:
                 break;
