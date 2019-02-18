@@ -23,6 +23,8 @@ public class SlackMessageControllerTest {
     @Autowired
     MockMvc mvc;
 
+    //todo mockmvc 로 controller를 테스트 할때 di 시켜줘야할 bean을 등록하는 법 공부
+
     /*
     As Slack sends your request URL events, we ask that you return a HTTP 200 OK for each event you successfully receive.
      */
