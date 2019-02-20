@@ -38,8 +38,7 @@ public class SlackMessageControllerTest {
     @Test
     public void botControllerTest() throws Exception {
         //language=JSON
-        String requestJsonBody = "{\"type\" : \"message\", \"text\" : \"hi\", \"user\" : \"WEF123123\", \"ts\" : 1548416095.000200, \"channel\" : \"CEW8123UEW\", \"event_ts\" : 1548416095.000200, \"channel_type\" : \"channel\"}\n";
-        //todo request json body change
+        String requestJsonBody = "{\"token\": \"HWw8VOijfweoifjoC\", \"teamId\": \"TEI89TA2\", \"apiAppId\": \"AF83X2OID\", \"event\" : {\"type\": \"message\", \"channel\": \"COW89AW8E\", \"user\": \"ISO982PI3\", \"text\": \"test\", \"ts\": 1550665259.000200}, \"eventId\": \"IvPE24G8Cg\", \"eventTime\": 1550665259, \"authedUsers\": [\"UES2P9DK3\"]}\n";
         mvc.perform(
                 post("/bot")
                 .contentType(MediaType.APPLICATION_JSON)
