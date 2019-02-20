@@ -4,6 +4,7 @@ import com.nokchax.observer.component.GitAlarm;
 import com.nokchax.observer.service.TranslateService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -38,13 +39,17 @@ public class SlackMessageControllerTest {
     @Test
     public void botControllerTest() throws Exception {
         //language=JSON
-        String requestJsonBody = "{\"token\": \"HWw8VOijfweoifjoC\", \"teamId\": \"TEI89TA2\", \"apiAppId\": \"AF83X2OID\", \"event\" : {\"type\": \"message\", \"channel\": \"COW89AW8E\", \"user\": \"ISO982PI3\", \"text\": \"test\", \"ts\": 1550665259.000200}, \"eventId\": \"IvPE24G8Cg\", \"eventTime\": 1550665259, \"authedUsers\": [\"UES2P9DK3\"]}\n";
-        //todo mock bean에서 메소드가 실행된 것을 테스트하려면..?
+        String requestJsonBody = "{\"token\": \"HWw8VOijfweoifjoC\", \"teamId\": \"TEI89TA2\", \"apiAppId\": \"AF83X2OID\", \"event\" : {\"type\": \"message\", \"channel\": \"COW89AW8E\", \"user\": \"ISO982PI3\", \"text\": \"/커밋체크\", \"ts\": 1550665259.000200}, \"eventId\": \"IvPE24G8Cg\", \"eventTime\": 1550665259, \"authedUsers\": [\"UES2P9DK3\"]}\n";
+        /*
+        mock bean에서 메소드가 실행된 것을 테스트하려면..?
+        Mockito.verify() 를 사용하자
+         */
         mvc.perform(
                 post("/bot")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(requestJsonBody)
         ).andExpect(status().isOk())
         .andDo(print());
+        Mockito.verify(gitAlarm).checkMyCommit();
     }
 }
