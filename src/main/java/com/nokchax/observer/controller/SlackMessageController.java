@@ -2,7 +2,6 @@ package com.nokchax.observer.controller;
 
 import com.nokchax.observer.component.GitAlarm;
 import com.nokchax.observer.domain.EventType;
-import com.nokchax.observer.service.GitService;
 import com.nokchax.observer.service.TranslateService;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
