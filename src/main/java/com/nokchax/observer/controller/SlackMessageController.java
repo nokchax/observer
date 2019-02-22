@@ -35,6 +35,7 @@ public class SlackMessageController {
                 gitAlarm.checkMyCommit();
                 break;
             case TRANSLATE:
+                translateService.translate("apple");
                 break;
             default:
 
