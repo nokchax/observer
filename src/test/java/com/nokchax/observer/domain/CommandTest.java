@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CommandTest {
     @Test
     public void commandTest() {
-        Command command = new Command("/번역 사과");
+        Command command = new Command("@번역 사과");
         assertThat(command.getCommandType())
                 .isEqualTo(CommandType.TRANSLATE);
         assertThat(command.getCommandArgument())
@@ -18,7 +18,7 @@ public class CommandTest {
 
     @Test
     public void argumentTest() {
-        assertThat(new Command("/번역").getCommandArgument())
+        assertThat(new Command("@번역").getCommandArgument())
                 .isEqualTo("");
     }
 

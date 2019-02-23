@@ -30,6 +30,8 @@ https://api.slack.com/types/event
 @NoArgsConstructor
 public class EventType {
     private String token;
+    private String challenge;
+    private String type;
     @JsonProperty("team_id")
     private String teamId;
     @JsonProperty("api_app_id")
@@ -44,5 +46,9 @@ public class EventType {
 
     public CommandType getCommandType() {
         return event.getCommandType();
+    }
+
+    public Command getCommand() {
+        return event.getCommand();
     }
 }

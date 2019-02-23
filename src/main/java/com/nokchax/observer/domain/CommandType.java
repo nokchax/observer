@@ -1,5 +1,6 @@
 package com.nokchax.observer.domain;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 
 public enum CommandType {
@@ -10,13 +11,13 @@ public enum CommandType {
 
     public static CommandType getCommandType(String text) {
         String command = getCommand(text);
-        if(StringUtils.isEmpty(command) || !command.startsWith("/"))
+        if(StringUtils.isEmpty(command) || !command.startsWith("@"))
             return NONE;
 
         switch (command) {
-            case "/번역" :
+            case "@번역" :
                 return TRANSLATE;
-            case "/커밋체크":
+            case "@커밋체크":
                 return COMMIT_CHECK;
             default:
                 return NONE;

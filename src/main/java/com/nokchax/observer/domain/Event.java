@@ -18,4 +18,8 @@ public class Event {
     public CommandType getCommandType() {
         return CommandType.getCommandType(this.text);
     }
+
+    public Command getCommand() {
+        return new Command(this.text);
+    }
 }

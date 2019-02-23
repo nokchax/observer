@@ -9,12 +9,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class CommandTypeTest {
     @Test
     public void getCommandTypeTest_TRANSLATE() {
-        assertThat(CommandType.getCommandType("/번역")).isEqualTo(CommandType.TRANSLATE);
+        assertThat(CommandType.getCommandType("@번역")).isEqualTo(CommandType.TRANSLATE);
     }
 
     @Test
     public void getCommandTypeTest_CHECKCOMMIT() {
-        assertThat(CommandType.getCommandType("/커밋체크"))
+        assertThat(CommandType.getCommandType("@커밋체크"))
                 .isEqualTo(CommandType.COMMIT_CHECK);
     }
 
@@ -32,7 +32,7 @@ public class CommandTypeTest {
 
     @Test
     public void getCommandTypeTest_undefinedCommand() {
-        assertThat(CommandType.getCommandType("/언디파인드"))
+        assertThat(CommandType.getCommandType("@언디파인드"))
                 .isEqualTo(CommandType.NONE);
     }
 }
