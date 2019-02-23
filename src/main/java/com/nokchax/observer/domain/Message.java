@@ -19,7 +19,7 @@ public class Message {
         this.text = text;
     }
     public Message(String text, String channel) {
-        Message message = new Message(text);
-        message.channel = channel;
+        this(text);
+        this.channel = channel;
     }
 }
