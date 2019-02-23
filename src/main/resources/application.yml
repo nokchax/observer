@@ -20,9 +20,6 @@ git:
       commentUrl: https://api.github.com/search/commits
       commentQuery: ?q=committer:%s+committer-date:%s..%s+sort:committer-date-desc+is:public
 
-bot:
-  commandPrefix: @
-
 slack:
   webhook:
     urlOfMine: u can get url from Incoming WebHooks slack app
