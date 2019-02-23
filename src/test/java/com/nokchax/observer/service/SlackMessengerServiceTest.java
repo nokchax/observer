@@ -18,7 +18,7 @@ public class SlackMessengerServiceTest {
     slack message api return when 200 ok
     {
         "ok": true,
-        "channel": "CEW89TU4E",
+        "channel": "",
         "ts": "1548072829.000500",
         "message": {
             "type": "message",
