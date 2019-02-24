@@ -1,6 +1,7 @@
 package com.nokchax.observer.controller;
 
 import com.nokchax.observer.component.GitAlarm;
+import com.nokchax.observer.domain.Command;
 import com.nokchax.observer.domain.EventType;
 import com.nokchax.observer.service.TranslateService;
 import lombok.Setter;
@@ -30,12 +31,13 @@ public class SlackMessageController {
         System.out.println(eventType);
         //text의 prefix에 따라 처리하기..
 
-        switch(eventType.getCommandType()) {
+        Command command = eventType.getCommand();
+        switch(command.getCommandType()) {
             case COMMIT_CHECK:
                 gitAlarm.checkMyCommit();
                 break;
             case TRANSLATE:
-                translateService.translate("apple");
+                translateService.translate(command.getCommandArgument());
                 break;
             default:
 
