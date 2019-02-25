@@ -1,6 +1,5 @@
 package com.nokchax.observer.domain;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.util.StringUtils;
 
 public enum CommandType {
