@@ -27,7 +27,7 @@ public class SlackMessageController {
     // todo 예외가 발생하면 controller advice에서 잡아서 error 메세지를 체널로 응답한다.
     // todo spring @Controller / @RequestMapping 처럼 필터에서 미리 데이터를 받아서 DISPATCH 시킬 수 있게 만들기
     @PostMapping("/bot")
-    public String incoming(@RequestBody EventType eventType) {
+    public EventType incoming(@RequestBody EventType eventType) {
         //todo check token from slack filter level
         System.out.println(eventType);
         //text의 prefix에 따라 처리하기..
@@ -44,6 +44,6 @@ public class SlackMessageController {
 
         }
 
-        return eventType.toString();
+        return eventType;
     }
 }
