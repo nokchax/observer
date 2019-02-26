@@ -12,10 +12,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /*
 mock mvc test link
@@ -33,6 +34,20 @@ public class SlackMessageControllerTest {
     TranslateService papagoService;
 
     //todo mockmvc 로 controller를 테스트 할때 di 시켜줘야할 bean을 등록하는 법 공부
+    @Test
+    public void testChallengeTest() throws Exception {
+        //language=JSON
+        String requestJsonBody = "{\"token\": \"HWw8VOijfweoifjoC\", \"teamId\": \"TEI89TA2\", \"apiAppId\": \"AF83X2OID\", \"event\" : {\"type\": \"message\", \"channel\": \"COW89AW8E\", \"user\": \"ISO982PI3\", \"text\": \"@커밋체크\", \"ts\": 1550665259.000200}, \"eventId\": \"IvPE24G8Cg\", \"eventTime\": 1550665259, \"authedUsers\": [\"UES2P9DK3\"], \"challenge\":  \"1234567890\"}\n";
+        mvc.perform(
+                post("/bot")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(requestJsonBody)
+                ).andExpect(status().isOk())
+                .andExpect(jsonPath("$.challenge", is("1234567890")))
+                .andDo(print());
+
+        //todo response
+    }
 
     /*
     As Slack sends your request URL events, we ask that you return a HTTP 200 OK for each event you successfully receive.
