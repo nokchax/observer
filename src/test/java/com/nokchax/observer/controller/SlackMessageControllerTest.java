@@ -45,8 +45,6 @@ public class SlackMessageControllerTest {
                 ).andExpect(status().isOk())
                 .andExpect(jsonPath("$.challenge", is("1234567890")))
                 .andDo(print());
-
-        //todo response
     }
 
     /*
