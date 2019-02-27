@@ -40,9 +40,10 @@ public class SlackMessageControllerTest {
         String requestJsonBody = "{\"token\": \"HWw8VOijfweoifjoC\", \"teamId\": \"TEI89TA2\", \"apiAppId\": \"AF83X2OID\", \"event\" : {\"type\": \"message\", \"channel\": \"COW89AW8E\", \"user\": \"ISO982PI3\", \"text\": \"@커밋체크\", \"ts\": 1550665259.000200}, \"eventId\": \"IvPE24G8Cg\", \"eventTime\": 1550665259, \"authedUsers\": [\"UES2P9DK3\"], \"challenge\":  \"1234567890\"}\n";
         mvc.perform(
                 post("/bot")
-                        .contentType(MediaType.APPLICATION_JSON)
+                        .contentType(MediaType.APPLICATION_JSON_UTF8)
                         .content(requestJsonBody)
                 ).andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(jsonPath("$.challenge", is("1234567890")))
                 .andDo(print());
     }
