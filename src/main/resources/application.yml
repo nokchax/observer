@@ -35,3 +35,12 @@ naver:
     clientId:
     clientSecret:
   apiUrl: https://openapi.naver.com/v1/papago/n2mt
+
+message:
+  press:
+    - 절대 커밋해!
+    - 누구인가? 누가 감히 커밋도 안하고 놀아?
+    - 여봐라 이자를 매우 쳐라
+  celebration:
+    - Commit complete :)
+    - 수고하셨습니다.
