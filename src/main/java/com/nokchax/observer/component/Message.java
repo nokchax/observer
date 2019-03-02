@@ -1,6 +1,7 @@
 package com.nokchax.observer.component;
 
 
+import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Getter
 @ConfigurationProperties("message")
 public class Message {
     private List<String> press = new ArrayList<>();
@@ -26,11 +28,11 @@ public class Message {
     아니네?
     재 테스트...
      */
-    public List<String> getPress() {
+/*    public List<String> getPress() {
         return press;
     }
 
     public List<String> getCelebration() {
         return celebration;
-    }
+    }*/
 }
