@@ -1,19 +1,18 @@
 package com.nokchax.observer.component;
 
 
-import lombok.Getter;
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Component
-@Getter
 @ConfigurationProperties("message")
 public class Message {
-    private List<String> press = new ArrayList<>();
-    private List<String> celebration = new ArrayList<>();
+    private List<String> press;
+    private List<String> celebration;
 
     public void printPress() {
         press.stream().forEach(System.out::println);
