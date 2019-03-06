@@ -2,6 +2,7 @@ package com.nokchax.observer.component;
 
 import com.nokchax.observer.domain.GitSearchApiResponse;
 import com.nokchax.observer.service.GitService;
+import com.nokchax.observer.service.MessageService;
 import com.nokchax.observer.service.WebhookService;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +26,8 @@ public class GitAlarmTest {
     private GitService gitService;
     @Mock
     private WebhookService slackService;
+    @Mock
+    private MessageService messageService;
     @Value("${git.myID}")
     private String myID;
 
@@ -34,7 +37,7 @@ public class GitAlarmTest {
      */
     @Before
     public void init() {
-        gitAlarm = new GitAlarm(gitService, slackService);
+        gitAlarm = new GitAlarm(gitService, slackService, messageService);
         when(slackService.sendMsg((String)notNull())).thenReturn(true);
     }
 
