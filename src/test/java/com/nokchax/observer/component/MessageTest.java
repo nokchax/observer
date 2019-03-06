@@ -1,5 +1,6 @@
 package com.nokchax.observer.component;
 
+import com.nokchax.observer.service.MessageServiceImpl;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class MessageTest {
     @Autowired
-    Message message;
+    MessageServiceImpl message;
 
     @Test
     public void loadTest() {
-        message.printPress();
+
     }
 }

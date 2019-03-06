@@ -2,6 +2,8 @@ package com.nokchax.observer.component;
 
 import com.nokchax.observer.domain.GitSearchApiResponse;
 import com.nokchax.observer.service.GitService;
+import com.nokchax.observer.service.MessageService;
+import com.nokchax.observer.service.MessageServiceImpl;
 import com.nokchax.observer.service.WebhookService;
 import com.nokchax.observer.util.MessageUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -15,14 +17,16 @@ import org.springframework.stereotype.Component;
 public class GitAlarm {
     private GitService gitService;
     private WebhookService slackService;
+    private MessageService messageService;
     private boolean hasCommittedToday = false;
 
     @Value("${git.myID}")
     private String myID;
 
-    public GitAlarm(GitService gitService, WebhookService slackService) {
+    public GitAlarm(GitService gitService, WebhookService slackService, MessageService messageService) {
         this.gitService = gitService;
         this.slackService = slackService;
+        this.messageService = messageService;
     }
 
     //scheduled annotation not allow method that has argument
@@ -43,7 +47,7 @@ public class GitAlarm {
         log.info("Send Msg");
         GitSearchApiResponse myCommitResponse = gitService.searchCommentsOfToday(userId);
 
-        slackService.sendMsg(MessageUtil.getMessageByGitApiResponse(myCommitResponse));
+        slackService.sendMsg(messageService.getMessageByGitApiResponse(myCommitResponse));
 
         this.hasCommittedToday = myCommitResponse.hasCommitted();
     }

@@ -1,4 +1,4 @@
-package com.nokchax.observer.component;
+package com.nokchax.observer.service;
 
 
 import com.nokchax.observer.domain.GitSearchApiResponse;
@@ -12,14 +12,9 @@ import java.util.concurrent.ThreadLocalRandom;
 @Data
 @Component
 @ConfigurationProperties("message")
-public class Message {
+public class MessageServiceImpl implements MessageService {
     private List<String> press;
     private List<String> celebration;
-
-    public void printPress() {
-        press.stream().forEach(System.out::println);
-        celebration.stream().forEach(System.out::println);
-    }
 
     public String getRandomPressMessage() {
         return press.get(ThreadLocalRandom.current().nextInt(press.size()));
