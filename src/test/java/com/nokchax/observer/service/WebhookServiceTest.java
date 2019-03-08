@@ -14,10 +14,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class WebhookServiceTest {
     @Autowired
     WebhookService slackMessageService;
+    @Autowired
+    MessageService messageService;
 
     @Test
     public void sendMsgTest() {
-        assertThat(slackMessageService.sendMsg(MessageUtil.getRandomPressMessage())).isEqualTo(true);
+        assertThat(slackMessageService.sendMsg(messageService.getRandomPressMessage())).isEqualTo(true);
     }
 
     @Test(expected = IllegalArgumentException.class)
