@@ -24,6 +24,7 @@ public class SlackMessageController {
     }
 
     // todo 자바 웹 프로그래밍 NextStep 공부 필요
+    // https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=91501933
     // todo 예외가 발생하면 controller advice에서 잡아서 error 메세지를 체널로 응답한다.
     // todo spring @Controller / @RequestMapping 처럼 필터에서 미리 데이터를 받아서 DISPATCH 시킬 수 있게 만들기
     @PostMapping("/bot")
