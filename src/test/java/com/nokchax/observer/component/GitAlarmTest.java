@@ -32,7 +32,7 @@ public class GitAlarmTest {
     private String myID;
 
     /*
-    when mock method accept any type of args use any(class) or (class)notNull()
+    use any(some.class) or (some.class)notNull() when mock method need to accept any type of some args
     https://stackoverflow.com/questions/5969630/can-mockito-stub-a-method-without-regard-to-the-argument
      */
     @Before
