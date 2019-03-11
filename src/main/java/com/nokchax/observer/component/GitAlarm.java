@@ -28,7 +28,7 @@ public class GitAlarm {
     }
 
     //scheduled annotation not allow method that has argument
-    @Scheduled(cron = "0 59 12,19,20,22 * * *")
+    @Scheduled(cron = "0 59 12,19,20,21,22 * * *")
     public void checkMyCommit() {
         checkCommit(myID);
     }
