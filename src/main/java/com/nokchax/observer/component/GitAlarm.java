@@ -52,9 +52,8 @@ public class GitAlarm {
 
     @Scheduled(cron = "0 0 0 * * *")
     public void init() {
-        log.info("Start Init commit flag : {}", this.hasCommittedToday);
         this.hasCommittedToday = false;
-        log.info("end Init commit flag : {}", this.hasCommittedToday);
+        log.info("Reset commit flag : {}", this.hasCommittedToday);
     }
 
     public boolean hasCommittedToday() {
