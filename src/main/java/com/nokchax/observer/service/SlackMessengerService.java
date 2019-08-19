@@ -41,8 +41,8 @@ public class SlackMessengerService implements MessengerService {
                 && !response.getBody().has("error");
     }
 
-    private HttpEntity createHttpEntity(Message message) {
-        return new HttpEntity(message, headers);
+    private HttpEntity<Message> createHttpEntity(Message message) {
+        return new HttpEntity<>(message, headers);
     }
 
     @PostConstruct
